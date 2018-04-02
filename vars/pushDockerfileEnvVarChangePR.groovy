@@ -18,7 +18,7 @@ def call(body) {
     def containerName = config.containerName ?: 'clients'
     def autoMerge = config.autoMerge ?: false
     def project = config.project
-    
+
     if (!project){
         error 'no project defined'
     }
@@ -41,13 +41,7 @@ def call(body) {
         flow.updateDockerfileEnvVar("${dockerfileName}", config.propertyName, config.version)
 
         container(name: containerName) {
-
-            sh 'chmod 600 /root/.ssh-git/ssh-key'
-            sh 'chmod 600 /root/.ssh-git/ssh-key.pub'
-            sh 'chmod 700 /root/.ssh-git'
-
-            sh "git config --global user.email fabric8-admin@googlegroups.com"
-            sh "git config --global user.name fabric8-release"
+            flow.setupGitSSH()
 
             def message = "fix(version): update ${dockerfileName} ${config.propertyName} to ${config.version}"
             sh "git add ${dockerfileName}"
