@@ -38,7 +38,7 @@ def call(Map parameters = [:], body) {
                             secretVolume(secretName: 'jenkins-hub-api-token', mountPath: '/home/jenkins/.apitoken'),
                             secretVolume(secretName: 'jenkins-ssh-config', mountPath: '/root/.ssh'),
                             secretVolume(secretName: 'jenkins-git-ssh', mountPath: '/root/.ssh-git-ro'),
-                            secretVolume(secretName: openshiftConfigSecretName, mountPath: '/root/home/.oc')
+                            secretVolume(secretName: openshiftConfigSecretName, mountPath: '/root/home/.oc-ro')
                     ]) {
                 body()
             }
@@ -60,7 +60,7 @@ def call(Map parameters = [:], body) {
                             secretVolume(secretName: 'jenkins-hub-api-token', mountPath: '/home/jenkins/.apitoken'),
                             secretVolume(secretName: 'jenkins-ssh-config', mountPath: '/root/.ssh'),
                             secretVolume(secretName: 'jenkins-git-ssh', mountPath: '/root/.ssh-git-ro'),
-                            secretVolume(secretName: openshiftConfigSecretName, mountPath: '/root/home/.oc')
+                            secretVolume(secretName: openshiftConfigSecretName, mountPath: '/root/home/.oc-ro')
                     ]) {
                 body()
             }
@@ -77,7 +77,7 @@ def call(Map parameters = [:], body) {
                             secretVolume(secretName: 'jenkins-hub-api-token', mountPath: '/home/jenkins/.apitoken'),
                             secretVolume(secretName: 'jenkins-ssh-config', mountPath: '/root/.ssh'),
                             secretVolume(secretName: 'jenkins-git-ssh', mountPath: '/root/.ssh-git-ro'),
-                            secretVolume(secretName: openshiftConfigSecretName, mountPath: '/root/home/.oc')
+                            secretVolume(secretName: openshiftConfigSecretName, mountPath: '/root/home/.oc-ro')
                     ]) {
                 body()
             }
@@ -91,7 +91,7 @@ def call(Map parameters = [:], body) {
                             secretVolume(secretName: 'jenkins-hub-api-token', mountPath: '/home/jenkins/.apitoken'),
                             secretVolume(secretName: 'jenkins-ssh-config', mountPath: '/root/.ssh'),
                             secretVolume(secretName: 'jenkins-git-ssh', mountPath: '/root/.ssh-git-ro'),
-                            secretVolume(secretName: openshiftConfigSecretName, mountPath: '/root/home/.oc')
+                            secretVolume(secretName: openshiftConfigSecretName, mountPath: '/root/home/.oc-ro')
                     ]) {
                 body()
             }

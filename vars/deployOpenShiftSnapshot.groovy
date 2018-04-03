@@ -19,6 +19,8 @@ def call(body) {
     def flow = new io.fabric8.Fabric8Commands()
     def utils = new io.fabric8.Utils()
 
+    flow.setupK8sConfig()
+
     openShiftProject = openShiftProject + '-' + utils.getRepoName()
     container('clients') {
         if (!flow.isAuthorCollaborator("", project)){

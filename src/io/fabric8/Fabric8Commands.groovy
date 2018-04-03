@@ -996,4 +996,19 @@ def setupGitSSH() {
        """
 }
 
+/*
+ * Move the KUBECONFIG from where it is mounted to where it should be. This is a
+ * stupid work around the fact that the secrets are mounted readonly and the
+ * config file is mutated by the oc CLI.
+ */
+@NonCPS
+def setupK8sConfig() {
+    if (fileExists('/root/home/.oc/cd.conf')) {
+        echo 'KUBECONFIG set correctly'
+    } else {
+        echo 'Copying KUBECONFIG from ~/.oc-ro to ~/.oc'
+        sh 'cp /root/home/.oc-ro/cd.conf /root/home/.oc/cd.conf'
+    }
+}
+
 return this
