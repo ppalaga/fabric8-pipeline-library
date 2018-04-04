@@ -46,6 +46,14 @@ def call(body) {
     }
     container('clients') {
 
+        echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        sh "oc version"
+        sh "oc whoami"
+        sh "oc get --all namespaces"
+        sh "oc get dc --all namespaces"
+        sh "oc status -v"
+        sh "cat $KUBECONFIG"
+
         try {
             sh "oc get project ${openShiftProject} | grep Active"
         } catch (err) {
@@ -65,7 +73,7 @@ def call(body) {
             export OPENSHIFT_CONSOLE_URL="https://console.free-stg.openshift.com/console/"
             export WS_K8S_API_SERVER="f8osoproxy-test-dsaas-preview.b6ff.rh-idev.openshiftapps.com:443"
             export FABRIC8_FEATURE_TOGGLES_API_URL="f8osoproxy-test-dsaas-preview.b6ff.rh-idev.openshiftapps.com:443"
-            
+
             export PROXIED_K8S_API_SERVER="${WS_K8S_API_SERVER}"
             export OAUTH_ISSUER="https://${WS_K8S_API_SERVER}"
             export PROXY_PASS_URL="https://${WS_K8S_API_SERVER}"
@@ -73,7 +81,7 @@ def call(body) {
             export OAUTH_AUTHORIZE_URI="https://${WS_K8S_API_SERVER}/oauth/authorize"
             export AUTH_LOGOUT_URI="https://${WS_K8S_API_SERVER}/connect/endsession?id_token={{id_token}}"
 
-            
+
             echo "FABRIC8_WIT_API_URL=${FABRIC8_WIT_API_URL}" > ./values.txt
             echo "FABRIC8_RECOMMENDER_API_URL=${FABRIC8_RECOMMENDER_API_URL}"  >> ./values.txt
             echo "FABRIC8_FORGE_API_URL=${FABRIC8_FORGE_API_URL}"  >> ./values.txt
@@ -88,7 +96,7 @@ def call(body) {
             echo "PROXY_PASS_URL=${PROXY_PASS_URL}"  >> ./values.txt
             echo "OAUTH_AUTHORIZE_URI=${OAUTH_AUTHORIZE_URI}"  >> ./values.txt
             echo "AUTH_LOGOUT_URI=${AUTH_LOGOUT_URI}"  >> ./values.txt
-                
+
             '''
     // TODO lets use a comment on the PR to denote whether or not to use prod or pre-prod?
     /*
