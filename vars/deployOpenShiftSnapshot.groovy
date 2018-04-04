@@ -23,10 +23,10 @@ def call(body) {
 
     openShiftProject = openShiftProject + '-' + utils.getRepoName()
     container('clients') {
-        if (!flow.isAuthorCollaborator("", project)){
-            currentBuild.result = 'ABORTED'
-            error 'Change author is not a collaborator on the project, aborting build until we support the [test] comment'
-        }
+        // if (!flow.isAuthorCollaborator("", project)){
+        //     currentBuild.result = 'ABORTED'
+        //     error 'Change author is not a collaborator on the project, aborting build until we support the [test] comment'
+        // }
 
         // get the latest released yaml
 
