@@ -19,7 +19,6 @@ def call(body) {
     def flow = new io.fabric8.Fabric8Commands()
     def utils = new io.fabric8.Utils()
 
-    flow.setupK8sConfig()
 
     openShiftProject = openShiftProject + '-' + utils.getRepoName()
     container('clients') {
@@ -28,6 +27,7 @@ def call(body) {
         //     error 'Change author is not a collaborator on the project, aborting build until we support the [test] comment'
         // }
 
+        flow.setupK8sConfig()
         // get the latest released yaml
 
         def yamlReleaseVersion = flow.getReleaseVersionFromMavenMetadata("${mavenRepo}/maven-metadata.xml")
