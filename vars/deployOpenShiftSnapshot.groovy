@@ -45,6 +45,7 @@ def call(body) {
         template = true
     }
     container('clients') {
+        sh "cat /root/home/.oc/cd.conf"
 
         echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         sh "oc version"
