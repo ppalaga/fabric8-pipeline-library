@@ -27,7 +27,6 @@ def call(body) {
         //     error 'Change author is not a collaborator on the project, aborting build until we support the [test] comment'
         // }
 
-        flow.setupK8sConfig()
         // get the latest released yaml
 
         def yamlReleaseVersion = flow.getReleaseVersionFromMavenMetadata("${mavenRepo}/maven-metadata.xml")
@@ -45,6 +44,7 @@ def call(body) {
         template = true
     }
     container('clients') {
+        flow.setupK8sConfig()
         sh "cat /root/home/.oc/cd.conf"
 
         echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
